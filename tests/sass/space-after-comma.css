@@ -1,0 +1,28 @@
+h1,h2 {
+  content: 'foo';
+}
+
+h1, h2 {
+  content: 'foo';
+}
+
+h1,
+h2 {
+  content: 'foo';
+}
+
+.foo {
+  box-shadow: 1px 1px black,1px 1px black;
+}
+
+.foo {
+  box-shadow: 1px 1px black, 1px 1px black;
+}
+
+.bar {
+  @include mixin('foo','bar');
+}
+
+.bar {
+  @include mixin('foo', 'bar');
+}

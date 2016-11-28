@@ -3,6 +3,138 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('property sort order - css', function () {
+  var file = lint.file('property-sort-order.css');
+
+  it('[order: alphabetical]', function (done) {
+    lint.test(file, {
+      'property-sort-order': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 12);
+      done();
+    });
+  });
+
+  it('[order: alphabetical, ignore-custom-properties: true]', function (done) {
+    lint.test(file, {
+      'property-sort-order': [
+        1,
+        {
+          'ignore-custom-properties': true
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 9);
+      done();
+    });
+  });
+
+  it('[order: custom]', function (done) {
+    lint.test(file, {
+      'property-sort-order': [
+        1,
+        {
+          'order': [
+            'height',
+            'width',
+            'display',
+            'color'
+          ]
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 6);
+      done();
+    });
+  });
+
+  it('[order: custom + composes, ignore-custom-properties: false]', function (done) {
+    lint.test(file, {
+      'property-sort-order': [
+        1,
+        {
+          'order': [
+            'height',
+            'composes',
+            'width',
+            'display',
+            'color'
+          ],
+          'ignore-custom-properties': false
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 8);
+      done();
+    });
+  });
+
+  it('[order: custom + composes, ignore-custom-properties: true]', function (done) {
+    lint.test(file, {
+      'property-sort-order': [
+        1,
+        {
+          'order': [
+            'height',
+            'width',
+            'display',
+            'color'
+          ],
+          'ignore-custom-properties': true
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 6);
+      done();
+    });
+  });
+
+  it('[order: recess]', function (done) {
+    lint.test(file, {
+      'property-sort-order': [
+        1,
+        {
+          'order': 'recess'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 10);
+      done();
+    });
+  });
+
+  it('[order: smacss]', function (done) {
+    lint.test(file, {
+      'property-sort-order': [
+        1,
+        {
+          'order': 'smacss'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 10);
+      done();
+    });
+  });
+
+  it('[order: concentric]', function (done) {
+    lint.test(file, {
+      'property-sort-order': [
+        1,
+        {
+          'order': 'concentric'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 10);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('property sort order - scss', function () {

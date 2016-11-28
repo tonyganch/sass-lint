@@ -3,6 +3,41 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('pseudo-element - css', function () {
+  var file = lint.file('pseudo-element.css');
+
+  var byAttribute = function byAttribute (key, value) {
+    return function filterByAttribute (element) {
+      return element[key].match(value);
+    };
+  };
+
+  it('enforces double colons for pseudo-elements', function (done) {
+    lint.test(file, {
+      'pseudo-element': 1
+    }, function (data) {
+      var pseudoElementRelatedWarnings = data.messages.filter(byAttribute('message', /Pseudo-elements/));
+      lint.assert.equal(data.warningCount, 39);
+      lint.assert.equal(pseudoElementRelatedWarnings.length, 7);
+      done();
+    });
+  });
+
+  it('enforces single colon for pseudo-classes', function (done) {
+    lint.test(file, {
+      'pseudo-element': 1
+    }, function (data) {
+      var pseudoClassRelatedWarnings = data.messages.filter(byAttribute('message', /Pseudo-classes/));
+      lint.assert.equal(data.warningCount, 39);
+      lint.assert.equal(pseudoClassRelatedWarnings.length, 32);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('pseudo-element - scss', function () {

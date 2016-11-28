@@ -3,6 +3,107 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('property-units - css', function () {
+  var file = lint.file('property-units.css');
+
+  it('global: [], per-property: {}', function (done) {
+    lint.test(file, {
+      'property-units': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 0);
+      done();
+    });
+  });
+
+  it('global: [\'px\'], per-property: {}', function (done) {
+    lint.test(file, {
+      'property-units': [
+        1,
+        {
+          'global': ['px']
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 6);
+      done();
+    });
+  });
+
+  it('global: [\'em\'], per-property: {}', function (done) {
+    lint.test(file, {
+      'property-units': [
+        1,
+        {
+          'global': ['em']
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 2);
+      done();
+    });
+  });
+
+  it('global: [\'em\', \'px\'], per-property: {}', function (done) {
+    lint.test(file, {
+      'property-units': [
+        1,
+        {
+          'global': ['em', 'px']
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 0);
+      done();
+    });
+  });
+
+  it('global: [], per-property: { height: [\'px\'] }', function (done) {
+    lint.test(file, {
+      'property-units': [
+        1,
+        {
+          'per-property': { height: ['px'] }
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 1);
+      done();
+    });
+  });
+
+  it('global: [], per-property: { height: [\'px\', \'em\'] }', function (done) {
+    lint.test(file, {
+      'property-units': [
+        1,
+        {
+          'per-property': { height: ['px', 'em'] }
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 0);
+      done();
+    });
+  });
+
+  it('global: [\'px\'], per-property: { height: [\'em\'] }', function (done) {
+    lint.test(file, {
+      'property-units': [
+        1,
+        {
+          'global': ['px'],
+          'per-property': { height: ['em'] }
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 6);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('property-units - scss', function () {

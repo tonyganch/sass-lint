@@ -3,6 +3,36 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('quotes - css', function () {
+  var file = lint.file('quotes.css');
+
+  it('[style: single]', function (done) {
+    lint.test(file, {
+      'quotes': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 2);
+      done();
+    });
+  });
+
+  it('[style: double]', function (done) {
+    lint.test(file, {
+      'quotes': [
+        1,
+        {
+          'style': 'double'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 2);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('quotes - scss', function () {

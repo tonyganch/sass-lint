@@ -1,0 +1,11 @@
+.foo {
+  content: 'bar';
+}
+
+.bar{
+  content: 'baz';
+}
+
+.qux {
+  content: 'bar';
+}

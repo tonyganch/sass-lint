@@ -3,6 +3,46 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('no disallowed properties - css', function () {
+  var file = lint.file('no-disallowed-properties.css');
+
+  it('properties: [z-index]', function (done) {
+    lint.test(file, {
+      'no-disallowed-properties': [
+        1,
+        {
+          properties: [
+            'z-index'
+          ]
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 2);
+      done();
+    });
+  });
+
+  it('properties: [z-index, display]', function (done) {
+    lint.test(file, {
+      'no-disallowed-properties': [
+        1,
+        {
+          properties: [
+            'z-index',
+            'display'
+          ]
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 3);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('no disallowed properties - scss', function () {

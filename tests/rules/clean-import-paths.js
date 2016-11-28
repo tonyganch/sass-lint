@@ -3,6 +3,65 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('clean import paths - css', function () {
+  var file = lint.file('clean-import-paths.css');
+
+  it('[leading-underscore: false, filename-extension: false]', function (done) {
+    lint.test(file, {
+      'clean-import-paths': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 8);
+      done();
+    });
+  });
+
+  it('[leading-underscore: true, filename-extension: false]', function (done) {
+    lint.test(file, {
+      'clean-import-paths': [
+        1,
+        {
+          'leading-underscore': true
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 8);
+      done();
+    });
+  });
+
+  it('[leading-underscore: false, filename-extension: true]', function (done) {
+    lint.test(file, {
+      'clean-import-paths': [
+        1,
+        {
+          'filename-extension': true
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 8);
+      done();
+    });
+  });
+
+  it('[leading-underscore: true, filename-extension: true]', function (done) {
+    lint.test(file, {
+      'clean-import-paths': [
+        1,
+        {
+          'leading-underscore': true,
+          'filename-extension': true
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 8);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('clean import paths - scss', function () {

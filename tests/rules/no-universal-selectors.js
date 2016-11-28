@@ -3,16 +3,16 @@
 var lint = require('./_lint');
 
 //////////////////////////////
-// SCSS syntax tests
+// CSS syntax tests
 //////////////////////////////
-describe('no universal selectors - scss', function () {
-  var file = lint.file('no-universal-selectors.scss');
+describe('no universal selectors - css', function () {
+  var file = lint.file('no-universal-selectors.css');
 
   it('enforce', function (done) {
     lint.test(file, {
       'no-universal-selectors': 1
     }, function (data) {
-      lint.assert.equal(6, data.warningCount);
+      lint.assert.equal(data.warningCount, 6);
       done();
     });
   });

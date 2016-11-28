@@ -3,6 +3,36 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('max-file-line-count - css', function () {
+  var file = lint.file('max-file-line-count.css');
+
+  it('enforce [default]', function (done) {
+    lint.test(file, {
+      'max-file-line-count': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 1);
+      done();
+    });
+  });
+
+  it('enforce [length: 3000]', function (done) {
+    lint.test(file, {
+      'max-file-line-count': [
+        1,
+        {
+          length: 3000
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 0);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('max-file-line-count - scss', function () {

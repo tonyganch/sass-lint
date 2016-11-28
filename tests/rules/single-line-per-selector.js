@@ -3,6 +3,22 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('single line per selector - css', function () {
+  var file = lint.file('single-line-per-selector.css');
+
+  it('enforce', function (done) {
+    lint.test(file, {
+      'single-line-per-selector': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 3);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('single line per selector - scss', function () {

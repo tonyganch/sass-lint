@@ -3,6 +3,22 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('no url domains - css', function () {
+  var file = lint.file('no-url-domains.css');
+
+  it('enforce', function (done) {
+    lint.test(file, {
+      'no-url-domains': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 3);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('no url domains - scss', function () {

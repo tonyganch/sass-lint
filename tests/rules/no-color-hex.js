@@ -3,6 +3,22 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('no color hex - css', function () {
+  var file = lint.file('no-color-hex.css');
+
+  it('enforce', function (done) {
+    lint.test(file, {
+      'no-color-hex': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 9);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('no color hex - scss', function () {

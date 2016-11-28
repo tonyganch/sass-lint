@@ -1,0 +1,7 @@
+.foo {
+  background-image: url('foo.png');
+}
+
+.bar {
+  background-image: url(foo.png);
+}

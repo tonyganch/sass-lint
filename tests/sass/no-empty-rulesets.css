@@ -1,0 +1,9 @@
+.foo {
+
+}
+
+@media screen {
+  .qux {}
+}
+
+.bar{}

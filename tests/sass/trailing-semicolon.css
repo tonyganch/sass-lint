@@ -1,0 +1,12 @@
+.foo {
+  content: 'bar'
+}
+
+.bar {
+  content: 'qux';
+  padding: 0
+
+  @media print {
+    content: 'waldo'
+  }
+}

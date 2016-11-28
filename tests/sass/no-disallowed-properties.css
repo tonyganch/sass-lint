@@ -1,0 +1,10 @@
+.foo {
+  z-index: 10;
+  display: block;
+}
+
+.test {
+  @media (max-width: 100px) {
+    z-index: 10;
+  }
+}

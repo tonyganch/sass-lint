@@ -2,6 +2,36 @@
 
 var lint = require('./_lint');
 
+describe('no mergeable selectors - css', function () {
+  var file = lint.file('no-mergeable-selectors.css');
+
+  it('[default]', function (done) {
+    lint.test(file, {
+      'no-mergeable-selectors': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 16);
+      done();
+    });
+  });
+
+  it('[whitelist: div p]', function (done) {
+    lint.test(file, {
+      'no-mergeable-selectors': [
+        1,
+        {
+          'whitelist': [
+            'div p'
+          ]
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 15);
+      done();
+    });
+  });
+
+});
+
 describe('no mergeable selectors - scss', function () {
   var file = lint.file('no-mergeable-selectors.scss');
 

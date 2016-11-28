@@ -1,0 +1,19 @@
+.test-failure {
+  -webkit-transit1on: width 2s;
+  background-sizer: contain;
+  colors: red;
+  transit1on: width 2s;
+
+}
+
+.test-correct {
+  -webkit-transition: width 2s;
+  background-size: contain;
+  color: red;
+  transition: width 2s;
+
+}
+
+.test-vendor {
+  -moz-osx-font-smoothing: auto;
+}

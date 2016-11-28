@@ -1,0 +1,13 @@
+.foo {
+  content :'foo';
+}
+
+.bar {
+  content:'bar';
+}
+
+.baz {
+  @media (max-width :50em) and (orientation:landscape) {
+    content: 'baz';
+  }
+}

@@ -3,6 +3,137 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('class name format - css', function () {
+  var file = lint.file('class-name-format.css');
+
+  it('[convention: hyphenatedlowercase]', function (done) {
+    lint.test(file, {
+      'class-name-format': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 21);
+      done();
+    });
+  });
+
+  it('[convention: hyphenatedlowercase with ignore]', function (done) {
+    lint.test(file, {
+      'class-name-format': [
+        1,
+        {
+          'ignore': ['block__element--modifier']
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 20);
+      done();
+    });
+  });
+
+  it('[convention: camelcase]', function (done) {
+    lint.test(file, {
+      'class-name-format': [
+        1,
+        {
+          'convention': 'camelcase'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 27);
+      done();
+    });
+  });
+
+  it('[convention: pascalcase]', function (done) {
+    lint.test(file, {
+      'class-name-format': [
+        1,
+        {
+          'convention': 'pascalcase'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 26);
+      done();
+    });
+  });
+
+  it('[convention: snakecase]', function (done) {
+    lint.test(file, {
+      'class-name-format': [
+        1,
+        {
+          'convention': 'snakecase'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 28);
+      done();
+    });
+  });
+
+  it('[convention: strictbem]', function (done) {
+    lint.test(file, {
+      'class-name-format': [
+        1,
+        {
+          'convention': 'strictbem'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 15);
+      done();
+    });
+  });
+
+  it('[convention: hyphenatedbem]', function (done) {
+    lint.test(file, {
+      'class-name-format': [
+        1,
+        {
+          'convention': 'hyphenatedbem'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 16);
+      done();
+    });
+  });
+
+  it('[convention: RegExp ^[_A-Z]+$]', function (done) {
+    lint.test(file, {
+      'class-name-format': [
+        1,
+        {
+          'convention': '^[_A-Z]+$'
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 28);
+      done();
+    });
+  });
+
+  it('[convention: RegExp ^[_A-Z]+$], with convention-explanation', function (done) {
+    var message = 'Its bad and you should feel bad.';
+    lint.test(file, {
+      'class-name-format': [
+        1,
+        {
+          'convention': '^[_A-Z]+$',
+          'convention-explanation': message
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 28);
+      lint.assert.equal(data.messages[0].message, message);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('class name format - scss', function () {

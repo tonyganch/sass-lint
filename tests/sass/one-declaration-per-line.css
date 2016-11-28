@@ -1,0 +1,11 @@
+/* Should cause issue */
+.foo {
+  content: 'baz'; content: 'qux';
+}
+
+.bar { color: red; content: 'bar'; }
+
+/* Should be ok */
+.foo {
+  content: 'bar';
+}

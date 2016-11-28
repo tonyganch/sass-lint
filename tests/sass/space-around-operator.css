@@ -1,0 +1,99 @@
+/*====================
+ * Should fail
+ *====================*/
+
+.foo {
+  margin: 5px+15px;
+}
+
+.foo {
+  margin: 5px+ 15px;
+}
+
+/* Multiple space */
+
+.foo {
+  margin: 5px     +    15px;
+}
+
+.bar {
+  margin: 5px +   15px;
+}
+
+.baz {
+  margin: 5px    + 15px;
+}
+
+.qux {
+  margin: 5px  +15px;
+}
+
+
+/*====================
+ * Should be ok
+ *====================*/
+
+.foo {
+  top: -10px;
+}
+
+.foo {
+  margin: 5px -15px;
+}
+
+.foo {
+  margin: -10px -15px;
+}
+
+.foo {
+  margin: -10px 10px -15px;
+}
+
+.foo {
+  margin: -10px -15px -15px;
+}
+
+.foo {
+  margin: -10px -15px -15px -15px;
+}
+
+.foo {
+  margin: -10rem -15em -15px 15px;
+}
+
+.foo {
+  margin-bottom: -20px;
+}
+
+.foo {
+  width: 100%;
+}
+
+.foo {
+  width: calc(100% - 20px);
+}
+
+.foo {
+  width: calc(100% / 2);
+}
+
+.foo {
+  font: italic small-caps bolder 16px/3 cursive;
+  font: italic small-caps bolder 16px/8px cursive;
+}
+
+li:nth-child(2n+1) {
+  content: '';
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  unicode-range: U+26;
+  unicode-range: U+0-7F;
+  unicode-range: U+0025-00FF;
+  unicode-range: U+4??;
+  unicode-range: U+0025-00FF, U+4??;
+}
+
+/* Imports */
+@import 'bar/foo';

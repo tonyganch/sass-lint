@@ -3,6 +3,36 @@
 var lint = require('./_lint');
 
 //////////////////////////////
+// CSS syntax tests
+//////////////////////////////
+describe('zero unit - css', function () {
+  var file = lint.file('zero-unit.css');
+
+  it('[include: false]', function (done) {
+    lint.test(file, {
+      'zero-unit': 1
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 3);
+      done();
+    });
+  });
+
+  it('[include: true]', function (done) {
+    lint.test(file, {
+      'zero-unit': [
+        1,
+        {
+          'include': true
+        }
+      ]
+    }, function (data) {
+      lint.assert.equal(data.warningCount, 2);
+      done();
+    });
+  });
+});
+
+//////////////////////////////
 // SCSS syntax tests
 //////////////////////////////
 describe('zero unit - scss', function () {

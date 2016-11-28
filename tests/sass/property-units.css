@@ -1,0 +1,20 @@
+.literal {
+    height: 3em;
+}
+
+.literal-property {
+    width: 3px;
+}
+
+.box-shadow {
+  box-shadow: 1em 1em black, 1em 1em black;
+}
+
+.background {
+  background: 1em solid white;
+}
+
+.red {
+  width: 4;
+  height: 5px;
+}

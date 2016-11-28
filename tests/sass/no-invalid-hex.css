@@ -1,0 +1,130 @@
+/* valid */
+
+.numbers-long {
+  color: #123456;
+}
+
+.numbers-short {
+  color: #123
+}
+
+.letters-long {
+  color: #abcdef;
+}
+
+.letters-short {
+  color: #abc;
+}
+
+.mixed-long {
+  color: #a12a12;
+}
+
+.mixed-short {
+  color: #a12;
+}
+
+.mixed-num-long {
+  color: #12a12a;
+}
+
+.mixed-num-short {
+  color: #12a;
+}
+
+.upper-letters-long {
+  color: #ABCDEF;
+}
+
+.upper-letters-short {
+  color: #ABC;
+}
+
+.upper-mixed-long {
+  color: #A12A12;
+}
+
+.upper-mixed-short {
+  color: #A12;
+}
+
+.upper-mixed-num-long {
+  color: #12A12A;
+}
+
+.upper-mixed-num-short {
+  color: #12A;
+}
+
+
+/* invalid */
+
+.invalid-long {
+  color: #1234567;
+}
+
+.invalid-med {
+  color: #1234;
+}
+
+.invalid-short {
+  color: #12;
+}
+
+.invalid-letters-long {
+  color: #abcdefg;
+}
+
+.invalid-letters-med {
+  color: #abcd;
+}
+
+.invalid-letters-short {
+  color: #ab;
+}
+
+.invalid-mixed-long {
+  color: #1bcdefg;
+}
+
+.invalid-mixed-med {
+  color: #1bcd;
+}
+
+.invalid-mixed-short {
+  color: #1b;
+}
+
+.invalid-mixed-letters-long {
+  color: #abcdef7;
+}
+
+.invalid-mixed-letters-med {
+  color: #abc4;
+}
+
+.invalid-mixed-letters-short {
+  color: #a1;
+}
+
+/* check that only hex colours are being parsed */
+
+.literal-color {
+  color: red;
+}
+
+.rgb-color {
+  color: rgb(255, 255, 255);
+}
+
+.rgba-color {
+  color: rgba(0, 0, 0, .1);
+}
+
+.hsl-color {
+  color: hsl(40, 50%, 50%);
+}
+
+.hsla-color {
+  color: hsla(40, 50%, 50%, .3);
+}

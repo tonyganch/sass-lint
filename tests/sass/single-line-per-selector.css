@@ -1,0 +1,24 @@
+.foo {
+  content: 'foo';
+}
+
+.foo.boo {
+  content: 'foo';
+}
+
+.foo, .boo {
+  content: 'foo';
+}
+
+.foo,.boo {
+  content: 'foo';
+}
+
+.foo,
+.boo {
+  content: 'foo';
+}
+
+.foo > a,.bar {
+  content: 'baz';
+}
